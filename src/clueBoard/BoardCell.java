@@ -6,9 +6,7 @@ public abstract class BoardCell {
 	private int index;
 	
 	public BoardCell() {
-		this.cellRow = 0;
-		this.cellColumn = 0;
-		this.index = 0;
+
 	}
 	
 	public boolean isWalkway() {

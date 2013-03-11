@@ -28,16 +28,22 @@ public class RoomCell extends BoardCell {
 		//if the room is a door, assign the appropriate value to the enum based on the second character of the id
 		if (id.length() == 2) {
 			secondInitial = (id.charAt(1));
-			if (id.charAt(1) == 'R') {
+			switch(secondInitial) {
+			case 'R':
 				doorDirection = DoorDirection.RIGHT;
-			} else if (id.charAt(1) == 'L') {
+				break;
+			case 'L':
 				doorDirection = DoorDirection.LEFT;
-			} else if (id.charAt(1) == 'U') {
+				break;
+			case 'U':
 				doorDirection = DoorDirection.UP;
-			} else if (id.charAt(1) == 'D') {
+				break;
+			case 'D':
 				doorDirection = DoorDirection.DOWN;
-			} else {
+				break;
+			default :
 				doorDirection = DoorDirection.NONE;
+				break;
 			}
 		} else if (id.length() != 1) {
 			
