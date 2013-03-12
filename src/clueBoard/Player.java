@@ -10,8 +10,9 @@ public class Player {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void disproveSuggestion(){
+	public Card disproveSuggestion(String person, String room, String weapon){
 		
+		return cards.get(0);	
 	}
 
 }
