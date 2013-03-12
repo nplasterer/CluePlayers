@@ -418,35 +418,35 @@ public class Board {
 	 * 							 and the row and column of the starting cell on the board.
 	 *****************************************************************************************************************/
 	public void calcTargetsRec(int row, int column, int step) {
-		int numOfSteps = step;
-
+		LinkedList<Integer> adjCells = adjMatrix.get(calcIndex(row,column));
+		
 		//sets the current cell to visited
 		visited.set(calcIndex(row,column), true);
 		
 		//for each adjacent cell
-		for (int i = 0; i < adjMatrix.get(calcIndex(row,column)).size(); i++) {
+		for (Integer i : adjCells) {
 			
 			//if the cell has not been visited
-			if (visited.get(adjMatrix.get(calcIndex(row,column)).get(i)) == false) {
+			if (visited.get(i) == false) {
 				
 				//set the cell to visited
-				visited.set(adjMatrix.get(calcIndex(row,column)).get(i), true);
+				visited.set(i, true);
 				
 				//if max number of steps have been taken, add the cell to list of targets
-				if (numOfSteps == 1) {
-					targets.add(cells.get(adjMatrix.get(calcIndex(row,column)).get(i)));
+				if (step == 1) {
+					targets.add(cells.get(i));
 					
 				//else if the cell is a doorway, add the doorway to the list of targets	
-				} else if (getCellAt(adjMatrix.get(calcIndex(row,column)).get(i)).isDoorway()) {
-					targets.add(cells.get(adjMatrix.get(calcIndex(row,column)).get(i)));
+				} else if (getCellAt(i).isDoorway()) {
+					targets.add(cells.get(i));
 					
 				//else if there are still steps to be taken, calculate targets of the current adjacent cell with one less step	
 				} else {
-					calcTargetsRec(getRow(adjMatrix.get(calcIndex(row,column)).get(i)), getColumn(adjMatrix.get(calcIndex(row,column)).get(i)), numOfSteps - 1);
+					calcTargetsRec(getRow(i), getColumn(i), step - 1);
 				}
 				
 				//sets the current adjacent cell back to false after targets have been calculated
-				visited.set(adjMatrix.get(calcIndex(row,column)).get(i), false);
+				visited.set(i, false);
 			}
 		}
 	}
