@@ -7,9 +7,22 @@ public class Card {
 	public Card() {
 		// TODO Auto-generated constructor stub
 	}
+
+	public String getCard() {
+		return card;
+	}
+
+	public void setCard(String card) {
+		this.card = card;
+	}
 	
-	//getters
-	//setters
-	//equals method
-	
+	 public boolean equals(Object o) {
+		  
+		    if (o instanceof Card) {
+		      Card c = (Card) o;
+		      if (this.card.equals(c.card)) return true;
+		    }
+		    return false;
+		    
+		  }
 }
