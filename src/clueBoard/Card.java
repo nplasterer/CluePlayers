@@ -1,5 +1,5 @@
 package clueBoard;
-
+//Naomi and Brandon
 public class Card {
 	private String card;
 	private enum type {PERSON, WEAPON, ROOM}

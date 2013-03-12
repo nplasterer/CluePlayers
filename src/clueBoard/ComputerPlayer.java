@@ -1,5 +1,5 @@
 package clueBoard;
-
+//Naomi and Brandon
 public class ComputerPlayer extends Player{
 	
 	public ComputerPlayer() {

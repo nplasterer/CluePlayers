@@ -1,5 +1,5 @@
 package clueBoard;
-
+//Naomi and Brandon
 public class HumanPlayer extends Player{
 
 	public HumanPlayer() {
