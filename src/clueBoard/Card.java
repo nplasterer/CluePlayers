@@ -2,7 +2,8 @@ package clueBoard;
 //Naomi and Brandon
 public class Card {
 	private String card;
-	private enum type {PERSON, WEAPON, ROOM}
+	public enum cardType {PERSON, WEAPON, ROOM}
+	private cardType type;
 	
 	public Card() {
 		// TODO Auto-generated constructor stub
@@ -16,13 +17,17 @@ public class Card {
 		this.card = card;
 	}
 	
-	 public boolean equals(Object o) {
-		  
-		    if (o instanceof Card) {
-		      Card c = (Card) o;
-		      if (this.card.equals(c.card)) return true;
-		    }
-		    return false;
-		    
-		  }
+	public boolean equals(Object o) {
+
+		if (o instanceof Card) {
+			Card c = (Card) o;
+			if (this.card.equals(c.card)) return true;
+		}
+		return false;
+
+	}
+	 
+	public cardType getType() {
+		return type;
+	}
 }
