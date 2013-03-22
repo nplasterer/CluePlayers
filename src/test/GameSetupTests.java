@@ -36,6 +36,11 @@ public class GameSetupTests {
 		game = new ClueGame();
 		game.loadConfigFiles();
 		game.selectAnswer();
+		
+		//Make cards for testing
+		//Card mustardCard = new Card("Colonel Mustard", Card.cardType.PERSON);
+		//Card knifeCard = new Card ("Knife", Card.cardType.WEAPON);
+		
 	}
 	
 	//Test for loading the people
@@ -120,7 +125,9 @@ public class GameSetupTests {
 	
 	//Test for dealing the cards
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void testDealingCards() {
+		//ensure all cards are dealt
+		//ensure all players have roughly the same number of cards
+		//ensure once card is not given to two different players
 	}
 }
