@@ -65,8 +65,17 @@ public class GameActionTests {
 	@Test
 	public void testTargetLocationAlwaysSelected() {
 		ComputerPlayer player = new ComputerPlayer();
+		player.setLastVistedRoom('L');
+		int enteredRoom = 0;
+		board.calcTargets(6, 7, 4);
 		//pick location with at least one room as a target
-		
+		for(int i = 0; i < 100; i++) {
+			BoardCell selected = player.pickLocation(board.getTargets());
+			if (selected == board.getRoomCellAt(4, 6))
+				enteredRoom++;
+		}
+		//ensure room is taken every time
+		Assert.assertEquals(enteredRoom, 100);
 	}
 	
 	//Test targets random selection
@@ -74,28 +83,28 @@ public class GameActionTests {
 	public void testTargetRandomSelection() {
 	ComputerPlayer player = new ComputerPlayer();
 	// Pick a location with no rooms in target, just three targets
-	board.calcTargets(14, 0, 2);
-	int loc_12_0Tot = 0;
-	int loc_14_2Tot = 0;
-	int loc_15_1Tot = 0;
+	board.calcTargets(23, 7, 2);
+	int loc_24_8Tot = 0;
+	int loc_22_8Tot = 0;
+	int loc_21_7Tot = 0;
 	// Run the test 100 times
 	for (int i=0; i<100; i++) {
 		BoardCell selected = player.pickLocation(board.getTargets());
-		if (selected == board.getRoomCellAt(12, 0))
-			loc_12_0Tot++;
-		else if (selected == board.getRoomCellAt(14, 2))
-			loc_14_2Tot++;
-		else if (selected == board.getRoomCellAt(15, 1))
-			loc_15_1Tot++;
+		if (selected == board.getRoomCellAt(24, 8))
+			loc_24_8Tot++;
+		else if (selected == board.getRoomCellAt(22, 8))
+			loc_22_8Tot++;
+		else if (selected == board.getRoomCellAt(21, 7))
+			loc_21_7Tot++;
 		else
 			fail("Invalid target selected");
 	}
 	// Ensure we have 100 total selections (fail should also ensure)
-	assertEquals(100, loc_12_0Tot + loc_14_2Tot + loc_15_1Tot);
+	assertEquals(100, loc_24_8Tot + loc_22_8Tot + loc_21_7Tot);
 	// Ensure each target was selected more than once
-	assertTrue(loc_12_0Tot > 10);
-	assertTrue(loc_14_2Tot > 10);
-	assertTrue(loc_15_1Tot > 10);							
+	assertTrue(loc_24_8Tot > 10);
+	assertTrue(loc_22_8Tot > 10);
+	assertTrue(loc_21_7Tot > 10);							
 }
 
 	//Test Target Location
@@ -103,7 +112,20 @@ public class GameActionTests {
 	@Test
 	public void testTargetLocationLastVisited(){
 		ComputerPlayer player = new ComputerPlayer();
+		player.setLastVistedRoom('B');
+		int enteredRoom = 0;
+		int loc_7_5Tot = 0;
+		board.calcTargets(6, 7, 3);
 		//pick a location with at least one room as a target that already been visited
+		for(int i = 0; i < 100; i++) {
+			BoardCell selected = player.pickLocation(board.getTargets());
+			if (selected == board.getRoomCellAt(4, 6))
+				enteredRoom++;
+			else if (selected == board.getRoomCellAt(7, 5));
+		}
+		//ensure room is never taken
+		Assert.assertEquals(enteredRoom, 0);
+		Assert.assertTrue(loc_7_5Tot > 0);
 	}
 	
 	//Test for Disproving a suggestion

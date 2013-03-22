@@ -8,6 +8,7 @@ public class Player {
 	private ArrayList<Card> cards = new ArrayList<Card>();
 	private java.awt.Point location;
 	private java.awt.Color color;
+	private char lastVistedRoom;
 
 	public Player() {
 		// TODO Auto-generated constructor stub
@@ -19,6 +20,8 @@ public class Player {
 		return cards.get(0);	
 	}
 
+	
+	//Setters and getters for tests
 	public String getName() {
 		return name;
 	}
@@ -43,4 +46,15 @@ public class Player {
 		this.cards = cards;
 	}
 
+
+	public char getLastVistedRoom() {
+		return lastVistedRoom;
+	}
+
+
+	public void setLastVistedRoom(char lastVistedRoom) {
+		this.lastVistedRoom = lastVistedRoom;
+	}
+
+	
 }
