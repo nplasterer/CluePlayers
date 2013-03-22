@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Player {
 	private String name;
+	public static ArrayList<Card> seen = new ArrayList<Card>();
 	private ArrayList<Card> cards = new ArrayList<Card>();
 	private java.awt.Point location;
 	private java.awt.Color color;
@@ -23,6 +24,10 @@ public class Player {
 
 	public ArrayList<Card> getCards() {
 		return cards;
+	}
+	
+	public void setLocation(java.awt.Point location) {
+		this.location = location;
 	}
 
 	public java.awt.Point getLocation() {

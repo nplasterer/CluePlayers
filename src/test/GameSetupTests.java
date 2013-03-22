@@ -158,6 +158,7 @@ public class GameSetupTests {
 					mustardSeen = true;
 			}
 		}
+		Assert.assertTrue(mustardSeen);
 		Assert.assertFalse(seenTwice);
 			
 	}
