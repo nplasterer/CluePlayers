@@ -125,8 +125,23 @@ public class GameActionTests {
 	//which include cards that the player has been dealt
 	@Test
 	public void testMakingSuggestion() {
-		//update seen cards
-		//set location
-		//ensure the suggested room is the current room and the other suggestions are not seen cards
+		//make computer player, set location, and update seen
+		ComputerPlayer player = new ComputerPlayer();
+		java.awt.Point location = new java.awt.Point(9,19);
+		player.setLocation(location);
+		Card mustardCard = new Card("Colonel Mustard", Card.cardType.PERSON);
+		Card knifeCard = new Card ("Knife", Card.cardType.WEAPON);
+		Card libraryCard = new Card("Library", Card.cardType.ROOM);
+		player.updateSeen(mustardCard);
+		player.updateSeen(knifeCard);
+		player.updateSeen(libraryCard);
+		
+		//make suggestion and test
+		Solution guess = player.createSuggestion();
+		Assert.assertEquals("Dining Room", guess.getRoom());
+		Card guessPerson = new Card(guess.getPerson(), Card.cardType.PERSON);
+		Assert.assertFalse(player.seen.contains(guessPerson));
+		Card guessWeapon = new Card(guess.getWeapon(), Card.cardType.WEAPON);
+		Assert.assertFalse(player.seen.contains(guessWeapon));
 	}
 }
