@@ -71,7 +71,12 @@ public class GameActionTests {
 	//when the player is in a room and makes a suggestion in order to eliminate suspects
 	@Test
 	public void testDisprovingSuggestion() {
-		fail("Not yet implemented");
+		//ensure a player (human or computer) has a card that's suggested, that card is "shown"
+		//ensure the player has multiple cards that match, the card to be returned is selected randomly
+		//ensure Once a player has shown a card, no other players are queried
+		//ensure disproving a suggestion starts with a player to the left of the person making the suggestion
+		//ensure the player making the suggestion should not be queried
+		//ensure if none of the other players has any relevant cards, the error value is returned
 	}
 	
 	//Test for making a suggestion
@@ -79,6 +84,6 @@ public class GameActionTests {
 	//which include cards that the player has been dealt
 	@Test
 	public void testMakingSuggestion() {
-		fail("Not yet implemented");
+		//
 	}
 }
