@@ -15,7 +15,7 @@ import clueBoard.Card;
 import clueBoard.ClueGame;
 import clueBoard.ComputerPlayer;
 import clueBoard.HumanPlayer;
-
+//Naomi Plasterer and Brandon Bosso
 public class GameSetupTests {
 
 	private static Board board;
@@ -38,6 +38,7 @@ public class GameSetupTests {
 		game.selectAnswer();
 	}
 	
+	//Test for loading the people
 	@Test
 	public void testLoadPeople() {
 		//set up test variables
@@ -93,6 +94,7 @@ public class GameSetupTests {
 		equal = false;
 	}
 
+	//Test for loading the cards
 	@Test
 	public void testLoadCards() {
 		int rooms = 0;
@@ -115,4 +117,10 @@ public class GameSetupTests {
 		//test that deck contains one specific card of each type
 	}
 	
+	
+	//Test for dealing the cards
+	@Test
+	public void test() {
+		fail("Not yet implemented");
+	}
 }
