@@ -5,7 +5,7 @@ public class Solution {
 	public String weapon;
 	public String room;
 	
-	public Solution() {
+	public Solution(String person, String weapon, String room) {
 		// TODO Auto-generated constructor stub
 	}
 

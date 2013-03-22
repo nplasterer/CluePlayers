@@ -2,22 +2,36 @@ package test;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
+import junit.framework.Assert;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import clueBoard.Board;
 import clueBoard.BoardCell;
+import clueBoard.Card;
+import clueBoard.ClueGame;
 import clueBoard.ComputerPlayer;
+import clueBoard.Solution;
 //Naomi Plasterer and Brandon Bosso
 public class GameActionTests {
 
 	private static Board board;
+	private static ClueGame game;
 
 	@BeforeClass
 	public static void setUp() {
+		//set up test board
 		board = new Board("ClueBoard.cfg","legend.cfg");
 		board.loadConfigFiles();
 		board.calcAdjacencies();
+		//set up test game
+		game = new ClueGame();
+		game.loadConfigFiles();
+		game.selectAnswer();
+		game.deal();
 	}
 	
 	//Test for checking an accusation
@@ -25,9 +39,24 @@ public class GameActionTests {
 	@Test
 	public void testCheckingAccusation() {
 		//Set answer
-		//Check accusation
+		Solution answer = new Solution("Colonel Mustard", "Knife", "Library");
+		Solution guess = answer;
+		
+		//Check correct accusation
 		//correct if it contains the correct person, weapon and room
+		guess = answer;
+		Assert.assertTrue(game.checkAccusation(guess));
+		//Check false accusation
 		//not correct if the room is wrong, or if the person is wrong, if the weapon is wrong, or if all three are wrong
+		//wrong room
+		guess = new Solution("Colonel Mustard", "Knife", "Billiards Room");
+		Assert.assertFalse(game.checkAccusation(guess));
+		//wrong weapon
+		guess = new Solution("Colonel Mustard", "Lead Pipe", "Library");
+		Assert.assertFalse(game.checkAccusation(guess));
+		//wrong person
+		guess = new Solution("Ms. Peacock", "Knife", "Library");
+		Assert.assertFalse(game.checkAccusation(guess));
 	}
 	
 	//Test for selecting a target location ensures that the room is always selected if it isn't the last visited
