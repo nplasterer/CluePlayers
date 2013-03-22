@@ -15,6 +15,7 @@ import clueBoard.Card;
 import clueBoard.ClueGame;
 import clueBoard.ComputerPlayer;
 import clueBoard.HumanPlayer;
+import clueBoard.Player;
 //Naomi Plasterer and Brandon Bosso
 public class GameSetupTests {
 
@@ -36,10 +37,8 @@ public class GameSetupTests {
 		game = new ClueGame();
 		game.loadConfigFiles();
 		game.selectAnswer();
+		game.deal();
 		
-		//Make cards for testing
-		//Card mustardCard = new Card("Colonel Mustard", Card.cardType.PERSON);
-		//Card knifeCard = new Card ("Knife", Card.cardType.WEAPON);
 		
 	}
 	
@@ -105,6 +104,11 @@ public class GameSetupTests {
 		int rooms = 0;
 		int players = 0;
 		int weapons = 0;
+		//Make cards for testing
+		Card mustardCard = new Card("Colonel Mustard", Card.cardType.PERSON);
+		Card knifeCard = new Card ("Knife", Card.cardType.WEAPON);
+		Card libraryCard = new Card("Library", Card.cardType.ROOM);
+
 		for(Card c : game.getCards()) {
 			if (c.getType() == Card.cardType.PERSON)
 				players++;
@@ -120,14 +124,41 @@ public class GameSetupTests {
 		Assert.assertEquals(game.getCards().size(), TOTAL_CARDS);
 		
 		//test that deck contains one specific card of each type
+		Assert.assertTrue(game.getCards().contains(mustardCard));
+		Assert.assertTrue(game.getCards().contains(knifeCard));
+		Assert.assertTrue(game.getCards().contains(libraryCard));
 	}
 	
 	
 	//Test for dealing the cards
 	@Test
 	public void testDealingCards() {
-		//ensure all cards are dealt
-		//ensure all players have roughly the same number of cards
-		//ensure once card is not given to two different players
+		boolean equalHands = true;
+		Player human = game.getHuman();
+		ArrayList<ComputerPlayer> computers = game.getComputer();
+		//test each player has equal hands
+		for (Player p : computers) {
+			if(Math.abs(human.getCards().size() - p.getCards().size()) > 1 )
+				equalHands = false;
+		}
+		Assert.assertTrue(equalHands);
+		//test all cards are dealt
+		Assert.assertEquals(game.getCards().size(), 0);
+		//test one card is not given to multiple players
+		Card mustardCard = new Card("Colonel Mustard", Card.cardType.PERSON);
+		boolean mustardSeen = false;
+		boolean seenTwice = false;
+		if(human.getCards().contains(mustardCard))
+			mustardSeen = true;
+		for(Player p : computers) {
+			if(p.getCards().contains(mustardCard)) {
+				if(mustardSeen)
+					seenTwice = true;
+				else
+					mustardSeen = true;
+			}
+		}
+		Assert.assertFalse(seenTwice);
+			
 	}
 }
