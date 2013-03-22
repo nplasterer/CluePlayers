@@ -24,17 +24,16 @@ public class GameActionTests {
 	//When a play thinks he or she knows the answer
 	@Test
 	public void testCheckingAccusation() {
-		fail("Not yet implemented");
 		//Set answer
 		//Check accusation
 		//correct if it contains the correct person, weapon and room
 		//not correct if the room is wrong, or if the person is wrong, if the weapon is wrong, or if all three are wrong
 	}
 	
-	//Test for selecting a target location
+	//Test for selecting a target location ensures that the room is always selected if it isn't the last visited
 	//the computer plays will select randomly from the possible locations to move to
 	@Test
-	public void testTargetLocation() {
+	public void testTargetLocationAlwaysSelected() {
 		fail("Not yet implemented");
 	}
 	
@@ -67,11 +66,23 @@ public class GameActionTests {
 	assertTrue(loc_15_1Tot > 10);							
 }
 
+	//Test Target Location
+	//ensures that if the room is the last visited, a random choice is made
+	@Test
+	public void testTargetLocationLastVisited(){
+		
+	}
+	
 	//Test for Disproving a suggestion
 	//when the player is in a room and makes a suggestion in order to eliminate suspects
 	@Test
 	public void testDisprovingSuggestion() {
-		fail("Not yet implemented");
+		//ensure If a player (human or computer) has a card that's suggested, that card is "shown"
+		//ensure If the player has multiple cards that match, the card to be returned is selected randomly.
+		//ensure Once a player has shown a card, no other players are queried
+		//ensure In the board game, disproving a suggestion starts with a player to the left of the person making the suggestion
+		//ensure The player making the suggestion should not be queried
+		//ensure If none of the other players has any relevant cards, the error value (null) is returned
 	}
 	
 	//Test for making a suggestion
