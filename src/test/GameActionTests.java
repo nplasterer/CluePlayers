@@ -90,6 +90,8 @@ public class GameActionTests {
 	//which include cards that the player has been dealt
 	@Test
 	public void testMakingSuggestion() {
-		fail("Not yet implemented");
+		//update seen cards
+		//set location
+		//ensure the suggested room is the current room and the other suggestions are not seen cards
 	}
 }
