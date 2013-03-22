@@ -5,7 +5,7 @@ public class Card {
 	public enum cardType {PERSON, WEAPON, ROOM}
 	private cardType type;
 	
-	public Card() {
+	public Card(String card, cardType type) {
 		// TODO Auto-generated constructor stub
 	}
 

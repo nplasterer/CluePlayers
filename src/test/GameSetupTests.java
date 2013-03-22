@@ -37,9 +37,6 @@ public class GameSetupTests {
 		game.loadConfigFiles();
 		game.selectAnswer();
 		
-		//Make cards for testing
-		//Card mustardCard = new Card("Colonel Mustard", Card.cardType.PERSON);
-		//Card knifeCard = new Card ("Knife", Card.cardType.WEAPON);
 		
 	}
 	
@@ -105,6 +102,11 @@ public class GameSetupTests {
 		int rooms = 0;
 		int players = 0;
 		int weapons = 0;
+		//Make cards for testing
+		Card mustardCard = new Card("Colonel Mustard", Card.cardType.PERSON);
+		Card knifeCard = new Card ("Knife", Card.cardType.WEAPON);
+		Card libraryCard = new Card("Library", Card.cardType.ROOM);
+
 		for(Card c : game.getCards()) {
 			if (c.getType() == Card.cardType.PERSON)
 				players++;
@@ -120,6 +122,9 @@ public class GameSetupTests {
 		Assert.assertEquals(game.getCards().size(), TOTAL_CARDS);
 		
 		//test that deck contains one specific card of each type
+		Assert.assertTrue(game.getCards().contains(mustardCard));
+		Assert.assertTrue(game.getCards().contains(knifeCard));
+		Assert.assertTrue(game.getCards().contains(libraryCard));
 	}
 	
 	
