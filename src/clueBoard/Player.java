@@ -1,7 +1,6 @@
 package clueBoard;
 //Naomi and Brandon
 import java.util.ArrayList;
-import java.util.HashSet;
 
 public class Player {
 	private String name;
@@ -14,7 +13,8 @@ public class Player {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Card disproveSuggestion(String person, String room, String weapon){
+
+	public Card disproveSuggestion(Solution suggestion){
 		
 		return cards.get(0);	
 	}
@@ -37,6 +37,10 @@ public class Player {
 	
 	public java.awt.Color getColor() {
 		return color;
+	}
+	
+	public void setCards(ArrayList<Card> cards) {
+		this.cards = cards;
 	}
 
 }

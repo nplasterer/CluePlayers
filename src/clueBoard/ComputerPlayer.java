@@ -12,6 +12,7 @@ public class ComputerPlayer extends Player{
 	
 	public BoardCell pickLocation(Set<BoardCell> target){
 		return null;
+		
 	}
 	
 	public Solution createSuggestion(){

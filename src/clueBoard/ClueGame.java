@@ -8,7 +8,8 @@ public class ClueGame {
 	private ArrayList<Card> cards;
 	private HumanPlayer human;
 	private boolean turn;
-	
+	private Player currentPlayer;
+
 	public ClueGame() {
 		computer = new ArrayList<ComputerPlayer>();
 		cards = new ArrayList<Card>();
@@ -27,8 +28,8 @@ public class ClueGame {
 		
 	}
 	
-	public void handleSuggestion(String person, String room, String weapon, Player accusingPerson){
-		
+	public Card handleSuggestion(Solution suggestion){
+		return null;
 	}
 	
 	public boolean checkAccusation(Solution solution){
@@ -45,6 +46,7 @@ public class ClueGame {
 	
 	}
 
+	//Getters and Setters for tests
 	public Solution getAnswer() {
 		return answer;
 	}
@@ -57,11 +59,24 @@ public class ClueGame {
 		return cards;
 	}
 
+	public void setComputer(ArrayList<ComputerPlayer> computer) {
+		this.computer = computer;
+	}
+
 	public ArrayList<ComputerPlayer> getComputer() {
 		return computer;
 	}
 
 	public HumanPlayer getHuman() {
 		return human;
+	}
+	
+	
+	public Player getCurrentPlayer() {
+		return currentPlayer;
+	}
+
+	public void setCurrentPlayer(Player currentPlayer) {
+		this.currentPlayer = currentPlayer;
 	}
 }

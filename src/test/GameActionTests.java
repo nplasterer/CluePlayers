@@ -14,6 +14,7 @@ import clueBoard.BoardCell;
 import clueBoard.Card;
 import clueBoard.ClueGame;
 import clueBoard.ComputerPlayer;
+import clueBoard.HumanPlayer;
 import clueBoard.Solution;
 //Naomi Plasterer and Brandon Bosso
 public class GameActionTests {
@@ -111,13 +112,77 @@ public class GameActionTests {
 	public void testDisprovingSuggestion() {
 		//Set suggestion
 		Solution suggestion = new Solution("Colonel Mustard", "Knife", "Library");
+		ComputerPlayer computer1 = new ComputerPlayer();
+		ComputerPlayer computer2 = new ComputerPlayer();
+		ComputerPlayer computer3 = new ComputerPlayer();
+		HumanPlayer human = new HumanPlayer();
+		ArrayList<Card> hand = new ArrayList<Card>();
+		ArrayList<ComputerPlayer> comps = new ArrayList<ComputerPlayer>();
+		
 		
 		//ensure If a player (human or computer) has a card that's suggested, that card is "shown"
+		Card mustardCard = new Card("Colonel Mustard", Card.cardType.PERSON);
+		hand.add(mustardCard);
+		computer1.setCards(hand);
+		Assert.assertEquals(computer1.disproveSuggestion(suggestion), mustardCard);
+		
+		
 		//ensure If the player has multiple cards that match, the card to be returned is selected randomly.
-		//ensure Once a player has shown a card, no other players are queried
+		Card knifeCard = new Card ("Knife", Card.cardType.WEAPON);
+		Card libraryCard = new Card("Library", Card.cardType.ROOM);
+		hand.add(knifeCard);
+		hand.add(libraryCard);
+		human.setCards(hand);
+		int mustard = 0, knife = 0, library = 0;
+		//make sure card is valid and counts how many times each card is returned
+		for(int i = 0; i < 100; i++) {
+			if(human.disproveSuggestion(suggestion) == mustardCard)
+				mustard++;
+			else if(human.disproveSuggestion(suggestion) == knifeCard)
+				knife++;
+			else if(human.disproveSuggestion(suggestion) == libraryCard)
+				library++;
+			else
+				fail("Invalid card returned");
+		}
+		//makes sure every card is returned more than once
+		Assert.assertTrue(mustard > 10);
+		Assert.assertTrue(knife > 10);
+		Assert.assertTrue(library > 10);
+			
 		//ensure In the board game, disproving a suggestion starts with a player to the left of the person making the suggestion
+		hand.remove(mustardCard);
+		hand.remove(knifeCard);
+		computer2.setCards(hand);
+		hand.remove(libraryCard);
+		hand.add(knifeCard);
+		computer3.setCards(hand);
+		comps.add(computer1);
+		comps.add(computer2);
+		comps.add(computer3);
+		int comp1 = 0, comp2 = 0, comp3 = 0;
+		game.setComputer(comps);
+		for(int i = 0; i < 100; i++) {
+			Card returned = game.handleSuggestion(suggestion);
+			if(returned == mustardCard)
+				comp1++;
+			else if(returned == libraryCard)
+				comp2++;
+			else if(returned == knifeCard)
+				comp3++;
+			else
+				fail("Invalid card returned");	
+		}
+		Assert.assertTrue(comp1 > 10);
+		Assert.assertTrue(comp2 > 10);
+		Assert.assertTrue(comp3 > 10);
 		//ensure The player making the suggestion should not be queried
-		//ensure If none of the other players has any relevant cards, the error value (null) is returned
+		game.setCurrentPlayer(computer1);
+		for(int i = 0; i < 100; i++) {
+			Card returned = game.handleSuggestion(suggestion);
+			if(returned == mustardCard)
+				fail("Suggesting player cannot return a card");	
+		}
 	}
 	
 	//Test for making a suggestion
@@ -137,11 +202,13 @@ public class GameActionTests {
 		player.updateSeen(libraryCard);
 		
 		//make suggestion and test
-		Solution guess = player.createSuggestion();
-		Assert.assertEquals("Dining Room", guess.getRoom());
-		Card guessPerson = new Card(guess.getPerson(), Card.cardType.PERSON);
-		Assert.assertFalse(player.seen.contains(guessPerson));
-		Card guessWeapon = new Card(guess.getWeapon(), Card.cardType.WEAPON);
-		Assert.assertFalse(player.seen.contains(guessWeapon));
+		for(int i = 0; i < 100; i++) {
+			Solution guess = player.createSuggestion();
+			Assert.assertEquals("Dining Room", guess.getRoom());
+			Card guessPerson = new Card(guess.getPerson(), Card.cardType.PERSON);
+			Assert.assertFalse(player.seen.contains(guessPerson));
+			Card guessWeapon = new Card(guess.getWeapon(), Card.cardType.WEAPON);
+			Assert.assertFalse(player.seen.contains(guessWeapon));
+		}
 	}
 }
