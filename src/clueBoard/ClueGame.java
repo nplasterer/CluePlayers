@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class ClueGame {
 	private ArrayList<ComputerPlayer> computer;
-	private ArrayList<Card> answer;
+	private Solution answer;
 	private ArrayList<Card> cards;
 	private HumanPlayer human;
 	private boolean turn;
@@ -13,7 +13,6 @@ public class ClueGame {
 		computer = new ArrayList<ComputerPlayer>();
 		cards = new ArrayList<Card>();
 		human = new HumanPlayer();
-		answer = new ArrayList<Card>();
 	}
 	
 	public void deal(){
@@ -46,11 +45,11 @@ public class ClueGame {
 	
 	}
 
-	public ArrayList<Card> getAnswer() {
+	public Solution getAnswer() {
 		return answer;
 	}
 
-	public void setAnswer(ArrayList<Card> answer) {
+	public void setAnswer(Solution answer) {
 		this.answer = answer;
 	}
 
