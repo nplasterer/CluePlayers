@@ -58,6 +58,10 @@ public class ClueGame {
 		return cards;
 	}
 
+	public void setCards(ArrayList<Card> cards) {
+		this.cards = cards;
+	}
+
 	public ArrayList<ComputerPlayer> getComputer() {
 		return computer;
 	}
