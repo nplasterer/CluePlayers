@@ -76,17 +76,17 @@ public class GameActionTests {
 	int loc_14_2Tot = 0;
 	int loc_15_1Tot = 0;
 	// Run the test 100 times
-	/*for (int i=0; i<100; i++) {
+	for (int i=0; i<100; i++) {
 		BoardCell selected = player.pickLocation(board.getTargets());
-		if (selected == board.getCellAt(12, 0))
+		if (selected == board.getRoomCellAt(12, 0))
 			loc_12_0Tot++;
-		else if (selected == board.getCellAt(14, 2))
+		else if (selected == board.getRoomCellAt(14, 2))
 			loc_14_2Tot++;
-		else if (selected == board.getCellAt(15, 1))
+		else if (selected == board.getRoomCellAt(15, 1))
 			loc_15_1Tot++;
 		else
 			fail("Invalid target selected");
-	}*/
+	}
 	// Ensure we have 100 total selections (fail should also ensure)
 	assertEquals(100, loc_12_0Tot + loc_14_2Tot + loc_15_1Tot);
 	// Ensure each target was selected more than once

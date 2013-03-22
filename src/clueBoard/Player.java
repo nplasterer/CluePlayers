@@ -1,6 +1,7 @@
 package clueBoard;
 //Naomi and Brandon
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Player {
 	private String name;
