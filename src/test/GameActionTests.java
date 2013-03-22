@@ -63,7 +63,9 @@ public class GameActionTests {
 	//the computer plays will select randomly from the possible locations to move to
 	@Test
 	public void testTargetLocationAlwaysSelected() {
-		fail("Not yet implemented");
+		ComputerPlayer player = new ComputerPlayer();
+		//pick location with at least one room as a target
+		
 	}
 	
 	//Test targets random selection
@@ -99,13 +101,17 @@ public class GameActionTests {
 	//ensures that if the room is the last visited, a random choice is made
 	@Test
 	public void testTargetLocationLastVisited(){
-		
+		ComputerPlayer player = new ComputerPlayer();
+		//pick a location with at least one room as a target that already been visited
 	}
 	
 	//Test for Disproving a suggestion
 	//when the player is in a room and makes a suggestion in order to eliminate suspects
 	@Test
 	public void testDisprovingSuggestion() {
+		//Set suggestion
+		Solution suggestion = new Solution("Colonel Mustard", "Knife", "Library");
+		
 		//ensure If a player (human or computer) has a card that's suggested, that card is "shown"
 		//ensure If the player has multiple cards that match, the card to be returned is selected randomly.
 		//ensure Once a player has shown a card, no other players are queried
