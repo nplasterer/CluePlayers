@@ -9,9 +9,17 @@ public class Player {
 	private java.awt.Point location;
 	private java.awt.Color color;
 	private char lastVistedRoom;
-
+	
 	public Player() {
-		// TODO Auto-generated constructor stub
+		name = null;
+		location = null;
+		color = null;
+	}
+
+	public Player(String name, java.awt.Point location, java.awt.Color color) {
+		this.name = name;
+		this.location = location;
+		this.color = color;
 	}
 	
 

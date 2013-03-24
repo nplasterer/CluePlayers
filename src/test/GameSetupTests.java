@@ -55,9 +55,9 @@ public class GameSetupTests {
 		
 		//test human player
 		//set to human name, starting location and color
-		testLocation = new java.awt.Point(0,0);
-		testColor = new java.awt.Color(0,0,0);
-		Assert.assertEquals("Brandon", human.getName());
+		testLocation = new java.awt.Point(0,8);
+		testColor = new java.awt.Color(255,0,0);
+		Assert.assertEquals("Miss Scarlett", human.getName());
 		if(testLocation.equals(human.getLocation()))
 			equal = true;
 		Assert.assertEquals(equal, true);
@@ -70,9 +70,9 @@ public class GameSetupTests {
 		//test second computer
 		//set to computer 2 name, starting location and color
 		testComp = computers.get(1);
-		testLocation = new java.awt.Point(0,0);
-		testColor = new java.awt.Color(0,0,0);
-		Assert.assertEquals("Brandon", testComp.getName());
+		testLocation = new java.awt.Point(24,8);
+		testColor = new java.awt.Color(255,255,255);
+		Assert.assertEquals("Mrs. White", testComp.getName());
 		if(testLocation.equals(testComp.getLocation()))
 			equal = true;
 		Assert.assertEquals(equal, true);
@@ -85,9 +85,9 @@ public class GameSetupTests {
 		//test fourth computer
 		//set to computer 4 name, starting location and color
 		testComp = computers.get(3);
-		testLocation = new java.awt.Point(0,0);
-		testColor = new java.awt.Color(0,0,0);
-		Assert.assertEquals("Brandon", testComp.getName());
+		testLocation = new java.awt.Point(17,24);
+		testColor = new java.awt.Color(0,0,255);
+		Assert.assertEquals("Mrs. Peacock", testComp.getName());
 		if(testLocation.equals(testComp.getLocation()))
 			equal = true;
 		Assert.assertEquals(equal, true);

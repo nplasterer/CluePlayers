@@ -6,8 +6,12 @@ import java.util.Set;
 public class ComputerPlayer extends Player{
 	private char lastVistedRoom;
 	
+	public ComputerPlayer(String name, java.awt.Point location, java.awt.Color color) {
+		super(name, location, color);
+	}
+	
 	public ComputerPlayer() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
 	
 	public BoardCell pickLocation(Set<BoardCell> target){
