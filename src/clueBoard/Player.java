@@ -1,6 +1,7 @@
 package clueBoard;
 //Naomi and Brandon
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Player {
 	private String name;
@@ -25,8 +26,27 @@ public class Player {
 	
 
 	public Card disproveSuggestion(Solution suggestion){
+
+		Random rand = new Random();
+		ArrayList<Card> hand = new ArrayList<Card>();
+		hand = cards;
+		//for(Card c: hand)
+			//System.out.println(c.getCard());
 		
-		return cards.get(0);	
+		while (!hand.isEmpty())
+		{
+			int j = rand.nextInt(hand.size());
+			if(suggestion.getWeapon().equals(hand.get(j).getCard()))
+				return hand.get(j);
+			else if(suggestion.getPerson().equals(hand.get(j).getCard()))
+					return hand.get(j);
+			else if(suggestion.getRoom().equals(hand.get(j).getCard()))
+					return hand.get(j);
+			else
+					hand.remove(j);
+		}
+		return null;
+
 	}
 	
 	public void acceptCard(Card card) {
