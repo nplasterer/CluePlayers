@@ -28,12 +28,13 @@ public class Player {
 	public Card disproveSuggestion(Solution suggestion){
 		Random rand = new Random();
 		ArrayList<Card> hand = new ArrayList<Card>();
-		hand =cards;
+		hand = cards;
+		for(Card c: hand)
+			System.out.println(c.getCard());
 		
 		while (!hand.isEmpty())
 		{
 			int j = rand.nextInt(hand.size());
-			System.out.println(hand.get(j).getCard());
 			if(suggestion.getWeapon().equals(hand.get(j).getCard()))
 				return hand.get(j);
 			else if(suggestion.getPerson().equals(hand.get(j).getCard()))

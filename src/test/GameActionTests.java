@@ -172,6 +172,8 @@ public class GameActionTests {
 		Assert.assertTrue(mustard > 10);
 		Assert.assertTrue(knife > 10);
 		Assert.assertTrue(library > 10);
+		
+		human.setCards(null);
 			
 		//ensure In the board game, disproving a suggestion starts with a player to the left of the person making the suggestion
 		hand.remove(mustardCard);

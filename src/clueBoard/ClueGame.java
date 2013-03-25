@@ -130,6 +130,7 @@ public class ClueGame {
 			int disproverIndex = roller.nextInt(players.size());
 			Player disprover = players.get(disproverIndex);
 			clues.add(disprover.disproveSuggestion(suggestion));
+			players.remove(disprover);
 		}
 		if(clues.size() == 0)
 			return null;
