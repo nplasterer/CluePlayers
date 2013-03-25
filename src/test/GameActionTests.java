@@ -89,11 +89,11 @@ public class GameActionTests {
 	// Run the test 100 times
 	for (int i=0; i<100; i++) {
 		BoardCell selected = player.pickLocation(board.getTargets());
-		if (selected == board.getRoomCellAt(24, 8))
+		if (selected.getIndex() == board.getCellAt(608).getIndex())
 			loc_24_8Tot++;
-		else if (selected == board.getRoomCellAt(22, 8))
+		else if (selected.getIndex() == board.getCellAt(558).getIndex())
 			loc_22_8Tot++;
-		else if (selected == board.getRoomCellAt(21, 7))
+		else if (selected.getIndex() == board.getCellAt(532).getIndex())
 			loc_21_7Tot++;
 		else
 			fail("Invalid target selected");
@@ -121,6 +121,7 @@ public class GameActionTests {
 			if (selected == board.getRoomCellAt(4, 6))
 				enteredRoom++;
 			else if (selected == board.getRoomCellAt(7, 5));
+				loc_7_5Tot++;
 		}
 		//ensure room is never taken
 		Assert.assertEquals(enteredRoom, 0);
