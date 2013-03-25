@@ -126,6 +126,7 @@ public class ClueGame {
 				players.add(c);
 		}
 		Random roller = new Random();
+
 		while(!players.isEmpty()) {
 			int disproverIndex = roller.nextInt(players.size());
 			Player disprover = players.get(disproverIndex);

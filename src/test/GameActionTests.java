@@ -200,8 +200,8 @@ public class GameActionTests {
 			else
 				fail("Invalid card returned");	
 		}
-		//Assert.assertTrue(comp1 > 10);
-		//Assert.assertTrue(comp2 > 10);
+		Assert.assertTrue(comp1 > 10);
+		Assert.assertTrue(comp2 > 10);
 		Assert.assertTrue(comp3 > 10);
 		//ensure The player making the suggestion should not be queried
 		game.setCurrentPlayer(computer1);
