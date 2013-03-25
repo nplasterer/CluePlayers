@@ -41,11 +41,10 @@ public class GameActionTests {
 	public void testCheckingAccusation() {
 		//Set answer
 		Solution answer = new Solution("Colonel Mustard", "Knife", "Library");
-		Solution guess = answer;
-		
+		Solution guess = new Solution("Colonel Mustard", "Knife", "Library");
+		game.setAnswer(answer);
 		//Check correct accusation
 		//correct if it contains the correct person, weapon and room
-		guess = answer;
 		Assert.assertTrue(game.checkAccusation(guess));
 		//Check false accusation
 		//not correct if the room is wrong, or if the person is wrong, if the weapon is wrong, or if all three are wrong

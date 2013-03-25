@@ -117,11 +117,40 @@ public class ClueGame {
 	}
 	
 	public Card handleSuggestion(Solution suggestion){
-		return null;
+		ArrayList<Player> players = new ArrayList<Player>();
+		ArrayList<Card> clues = new ArrayList<Card>();
+		if(currentPlayer != human)
+			players.add(human);
+		for(ComputerPlayer c : computer) {
+			if(currentPlayer != c)
+				players.add(c);
+		}
+		Random roller = new Random();
+		while(!players.isEmpty()) {
+			int disproverIndex = roller.nextInt(players.size());
+			Player disprover = players.get(disproverIndex);
+			clues.add(disprover.disproveSuggestion(suggestion));
+		}
+		if(clues.size() == 0)
+			return null;
+		else {
+			int cardIndex = roller.nextInt(clues.size());
+			return clues.get(cardIndex);
+		}
 	}
 	
 	public boolean checkAccusation(Solution solution){
-		return turn;
+		boolean correct = true;
+		if(solution.getPerson() != answer.getPerson()) {
+			correct = false;
+		}
+		else if(solution.getRoom() != answer.getRoom()) {
+			correct = false;
+		}
+		else if(solution.getWeapon() != answer.getWeapon()) {
+			correct = false;
+		}
+		return correct;
 	}
 
 	
