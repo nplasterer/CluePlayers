@@ -216,6 +216,7 @@ public class GameActionTests {
 		ComputerPlayer player = new ComputerPlayer();
 		java.awt.Point location = new java.awt.Point(9,19);
 		player.setLocation(location);
+		player.setCurrentRoom('D');
 		Card mustardCard = new Card("Colonel Mustard", Card.cardType.PERSON);
 		Card knifeCard = new Card ("Knife", Card.cardType.WEAPON);
 		Card libraryCard = new Card("Library", Card.cardType.ROOM);

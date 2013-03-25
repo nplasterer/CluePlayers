@@ -15,7 +15,7 @@ public class ClueGame {
 	private ArrayList<ComputerPlayer> computer;
 	private Solution answer;
 	private ArrayList<Card> cards;
-	private ArrayList<Card> fullDeck;
+	private static ArrayList<Card> fullDeck;
 	private HumanPlayer human;
 	private boolean turn;
 	private Player currentPlayer;
@@ -32,6 +32,7 @@ public class ClueGame {
 	}
 	
 	public void deal(){
+		selectAnswer();
 		int dealt = 0;
 		while(!cards.isEmpty()) {
 			int index = dealt % 6;
@@ -80,7 +81,39 @@ public class ClueGame {
 	}
 	
 	public void selectAnswer(){
+		String person;
+		String room;
+		String weapon;
+		ArrayList<Card> people = new ArrayList<Card>();
+		ArrayList<Card> rooms = new ArrayList<Card>();
+		ArrayList<Card> weapons = new ArrayList<Card>();
+		for(Card c : cards) {
+			if(c.getType() == Card.cardType.PERSON)
+				people.add(c);
+			else if(c.getType() == Card.cardType.ROOM)
+				rooms.add(c);
+			else
+				weapons.add(c);
+		}
+		Card selected = null;
+		Random roller = new Random();
 		
+		int index = roller.nextInt(people.size());
+		selected = people.get(index);
+		person = selected.getCard();
+		cards.remove(selected);
+		
+		index = roller.nextInt(rooms.size());
+		selected = rooms.get(index);
+		room = selected.getCard();
+		cards.remove(selected);
+		
+		index = roller.nextInt(weapons.size());
+		selected = weapons.get(index);
+		weapon = selected.getCard();
+		cards.remove(selected);
+		
+		answer = new Solution(person,weapon,room);
 	}
 	
 	public Card handleSuggestion(Solution suggestion){
@@ -206,7 +239,7 @@ public class ClueGame {
 		return cards;
 	}
 	
-	public ArrayList<Card> getFullDeck() {
+	public static ArrayList<Card> getFullDeck() {
 		return fullDeck;
 	}
 

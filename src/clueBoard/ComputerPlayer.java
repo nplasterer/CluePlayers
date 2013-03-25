@@ -1,5 +1,7 @@
 package clueBoard;
 
+import java.util.ArrayList;
+import java.util.Random;
 import java.util.Set;
 
 //Naomi and Brandon
@@ -20,7 +22,68 @@ public class ComputerPlayer extends Player{
 	}
 	
 	public Solution createSuggestion(){
-		return null;
+		//make arrayLists
+		ArrayList<Card> notSeen = new ArrayList<Card>();
+		ArrayList<Card> notSeenPeople = new ArrayList<Card>();
+		ArrayList<Card> notSeenWeapons = new ArrayList<Card>();
+		
+		//set notSeen
+		for(Card c : ClueGame.getFullDeck()) {
+			if(!seen.contains(c))
+				notSeen.add(c);
+		}
+		
+		//sort not seen
+		for(Card c : notSeen) {
+			if(c.getType() == Card.cardType.PERSON)
+				notSeenPeople.add(c);
+			else if(c.getType() == Card.cardType.WEAPON)
+				notSeenWeapons.add(c);
+		}
+		
+		//make random number generator and get person and weapon
+		Random roller = new Random();
+		int index = roller.nextInt(notSeenPeople.size());
+		String person = notSeenPeople.get(index).getCard();
+		index = roller.nextInt(notSeenWeapons.size());
+		String weapon = notSeenWeapons.get(index).getCard();
+		
+		//set Room
+		String room;
+		switch(this.currentRoom) {
+		case 'C' :
+			room = "Conservatory";
+			break;
+		case 'K' :
+			room = "Kitchen";
+			break;
+		case 'B' :
+			room = "Ballroom";
+			break;
+		case 'R' :
+			room = "Billiard Room";
+			break;
+		case 'L' :
+			room = "Library";
+			break;
+		case 's' :
+			room = "Study";
+			break;
+		case 'D' :
+			room = "Dining Room";
+			break;
+		case 'O' :
+			room = "Lounge";
+			break;
+		case 'H' :
+			room = "Hall";
+			break;
+		default :
+			room = null;
+		}
+		
+		Solution guess = new Solution(person, weapon, room);
+		return guess;
 	}
 	
 	public void updateSeen(Card seen){

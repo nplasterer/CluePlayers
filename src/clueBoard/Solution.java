@@ -18,7 +18,9 @@ public class Solution {
 	}
 
 	public Solution(String person, String weapon, String room) {
-		// TODO Auto-generated constructor stub
+		this.person = person;
+		this.weapon = weapon;
+		this.room = room;
 	}
 
 }
