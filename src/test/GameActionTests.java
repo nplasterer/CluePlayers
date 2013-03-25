@@ -158,11 +158,13 @@ public class GameActionTests {
 		int mustard = 0, knife = 0, library = 0;
 		//make sure card is valid and counts how many times each card is returned
 		for(int i = 0; i < 100; i++) {
-			if(human.disproveSuggestion(suggestion) == mustardCard)
+			Card disproved = human.disproveSuggestion(suggestion);
+			
+			if(disproved == mustardCard)
 				mustard++;
-			else if(human.disproveSuggestion(suggestion) == knifeCard)
+			else if(disproved == knifeCard)
 				knife++;
-			else if(human.disproveSuggestion(suggestion) == libraryCard)
+			else if(disproved == libraryCard)
 				library++;
 			else
 				fail("Invalid card returned");
