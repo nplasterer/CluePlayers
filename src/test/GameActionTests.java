@@ -177,37 +177,49 @@ public class GameActionTests {
 		game.setCurrentPlayer(game.getHuman());
 			
 		//ensure In the board game, disproving a suggestion starts with a player to the left of the person making the suggestion
-		hand.remove(mustardCard);
-		hand.remove(knifeCard);
-		computer2.setCards(hand);
-		hand.remove(libraryCard);
-		hand.add(knifeCard);
-		computer3.setCards(hand);
+		suggestion = new Solution("Professor Plum", "Lead Pipe", "Lounge");
+		
+		ArrayList<Card> comp1Hand = new ArrayList<Card>();
+		Card plumCard = new Card("Professor Plum", Card.cardType.PERSON);
+		comp1Hand.add(plumCard);
+		computer1.setCards(comp1Hand);
+		
+		ArrayList<Card> comp2Hand = new ArrayList<Card>();
+		Card pipeCard = new Card("Lead Pipe", Card.cardType.WEAPON);
+		comp2Hand.add(pipeCard);
+		computer2.setCards(comp2Hand);
+		
+		ArrayList<Card> comp3Hand = new ArrayList<Card>();
+		Card loungeCard = new Card("Lounge", Card.cardType.ROOM);
+		comp3Hand.add(loungeCard);
+		computer3.setCards(comp3Hand);
+		
 		comps.add(computer1);
 		comps.add(computer2);
 		comps.add(computer3);
 		
 		int comp1 = 0, comp2 = 0, comp3 = 0;
+		
 		game.setComputer(comps);
 		for(int i = 0; i < 100; i++) {
 			Card returned = game.handleSuggestion(suggestion);
-			if(returned == mustardCard)
+			if(returned == plumCard)
 				comp1++;
-			else if(returned == libraryCard)
+			else if(returned == pipeCard)
 				comp2++;
-			else if(returned == knifeCard)
+			else if(returned == loungeCard)
 				comp3++;
 			else
 				fail("Invalid card returned");	
 		}
-		//Assert.assertTrue(comp1 > 10);
-		//Assert.assertTrue(comp2 > 10);
+		Assert.assertTrue(comp1 > 10);
+		Assert.assertTrue(comp2 > 10);
 		Assert.assertTrue(comp3 > 10);
 		//ensure The player making the suggestion should not be queried
 		game.setCurrentPlayer(computer1);
 		for(int i = 0; i < 100; i++) {
 			Card returned = game.handleSuggestion(suggestion);
-			if(returned == mustardCard)
+			if(returned == plumCard)
 				fail("Suggesting player cannot return a card");	
 		}
 	}
