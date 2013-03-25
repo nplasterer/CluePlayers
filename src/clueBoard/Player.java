@@ -24,8 +24,17 @@ public class Player {
 	
 
 	public Card disproveSuggestion(Solution suggestion){
-		
-		return cards.get(0);	
+		for(int i =0; i<3; i ++)
+		{
+			System.out.println(cards.get(i).getCard());
+			if(suggestion.getWeapon().equals(cards.get(i).getCard()))
+				return cards.get(i);
+			else if(suggestion.getPerson().equals(cards.get(i).getCard()))
+				return cards.get(i);
+			else if(suggestion.getRoom().equals(cards.get(i).getCard()))
+				return cards.get(i);
+		}
+		return null;
 	}
 	
 	public void acceptCard(Card card) {
