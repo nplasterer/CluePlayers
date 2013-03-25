@@ -9,6 +9,7 @@ public class Player {
 	private java.awt.Point location;
 	private java.awt.Color color;
 	private char lastVistedRoom;
+	protected char currentRoom;
 	
 	public Player() {
 		name = null;
@@ -30,6 +31,7 @@ public class Player {
 	
 	public void acceptCard(Card card) {
 		cards.add(card);
+		seen.add(card);
 	}
 
 	
@@ -68,5 +70,8 @@ public class Player {
 		this.lastVistedRoom = lastVistedRoom;
 	}
 
+	public void setCurrentRoom(char currentRoom) {
+		this.currentRoom = currentRoom;
+	}
 	
 }
