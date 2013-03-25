@@ -9,6 +9,7 @@ public abstract class BoardCell {
 
 	}
 	
+	
 	public boolean isWalkway() {
 		return false;
 	}

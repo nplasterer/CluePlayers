@@ -26,6 +26,7 @@ public class Player {
 	
 
 	public Card disproveSuggestion(Solution suggestion){
+
 		Random rand = new Random();
 		ArrayList<Card> hand = new ArrayList<Card>();
 		hand = cards;
@@ -45,6 +46,7 @@ public class Player {
 					hand.remove(j);
 		}
 		return null;
+
 	}
 	
 	public void acceptCard(Card card) {

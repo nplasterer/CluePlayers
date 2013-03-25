@@ -17,8 +17,47 @@ public class ComputerPlayer extends Player{
 	}
 	
 	public BoardCell pickLocation(Set<BoardCell> target){
-		return null;
+		BoardCell targetCell = null;
+		Random roller = new Random();
+		ArrayList<BoardCell> doors = new ArrayList<BoardCell>();
+		ArrayList<BoardCell> nonDoors = new ArrayList<BoardCell>();
+		//pick target, doors have first priority
+		for(BoardCell b : target) {
+			if(b.isDoorway()) {
+				doors.add(b);
+			}
+			else
+				nonDoors.add(b);
+		}
 		
+		while(doors.size() > 0) {
+			int index = roller.nextInt(doors.size());
+			targetCell = doors.get(index);
+			RoomCell cell = (RoomCell) targetCell;
+			if(cell.getRoomInitial() != lastVistedRoom) {
+				return targetCell;
+			}
+			else 
+				doors.remove(targetCell);
+		}
+		
+		if(doors.size() == 0) {
+			int index = roller.nextInt(nonDoors.size());
+			targetCell = nonDoors.get(index);
+		}
+		//update current and last visited room
+		/*if(currentRoom != 'W') {
+			lastVistedRoom = currentRoom;
+		}
+		
+		if(targetCell.isWalkway()) {
+			currentRoom = 'W';
+		}
+		else if(targetCell.isDoorway()){
+			RoomCell doorway = (RoomCell) targetCell;
+			currentRoom = doorway.getRoomInitial();
+		}*/
+		return targetCell;
 	}
 	
 	public Solution createSuggestion(){

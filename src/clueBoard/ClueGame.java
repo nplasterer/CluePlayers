@@ -133,6 +133,8 @@ public class ClueGame {
 			clues.add(disprover.disproveSuggestion(suggestion));
 			players.remove(disprover);
 		}
+		
+		
 		if(clues.size() == 0)
 			return null;
 		else {

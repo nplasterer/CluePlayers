@@ -89,11 +89,11 @@ public class GameActionTests {
 	// Run the test 100 times
 	for (int i=0; i<100; i++) {
 		BoardCell selected = player.pickLocation(board.getTargets());
-		if (selected == board.getRoomCellAt(24, 8))
+		if (selected.getIndex() == board.getCellAt(608).getIndex())
 			loc_24_8Tot++;
-		else if (selected == board.getRoomCellAt(22, 8))
+		else if (selected.getIndex() == board.getCellAt(558).getIndex())
 			loc_22_8Tot++;
-		else if (selected == board.getRoomCellAt(21, 7))
+		else if (selected.getIndex() == board.getCellAt(532).getIndex())
 			loc_21_7Tot++;
 		else
 			fail("Invalid target selected");
@@ -121,6 +121,7 @@ public class GameActionTests {
 			if (selected == board.getRoomCellAt(4, 6))
 				enteredRoom++;
 			else if (selected == board.getRoomCellAt(7, 5));
+				loc_7_5Tot++;
 		}
 		//ensure room is never taken
 		Assert.assertEquals(enteredRoom, 0);
@@ -177,25 +178,37 @@ public class GameActionTests {
 		game.setCurrentPlayer(game.getHuman());
 			
 		//ensure In the board game, disproving a suggestion starts with a player to the left of the person making the suggestion
-		hand.remove(mustardCard);
-		hand.remove(knifeCard);
-		computer2.setCards(hand);
-		hand.remove(libraryCard);
-		hand.add(knifeCard);
-		computer3.setCards(hand);
+		suggestion = new Solution("Professor Plum", "Lead Pipe", "Lounge");
+		
+		ArrayList<Card> comp1Hand = new ArrayList<Card>();
+		Card plumCard = new Card("Professor Plum", Card.cardType.PERSON);
+		comp1Hand.add(plumCard);
+		computer1.setCards(comp1Hand);
+		
+		ArrayList<Card> comp2Hand = new ArrayList<Card>();
+		Card pipeCard = new Card("Lead Pipe", Card.cardType.WEAPON);
+		comp2Hand.add(pipeCard);
+		computer2.setCards(comp2Hand);
+		
+		ArrayList<Card> comp3Hand = new ArrayList<Card>();
+		Card loungeCard = new Card("Lounge", Card.cardType.ROOM);
+		comp3Hand.add(loungeCard);
+		computer3.setCards(comp3Hand);
+		
 		comps.add(computer1);
 		comps.add(computer2);
 		comps.add(computer3);
 		
 		int comp1 = 0, comp2 = 0, comp3 = 0;
+		
 		game.setComputer(comps);
 		for(int i = 0; i < 100; i++) {
 			Card returned = game.handleSuggestion(suggestion);
-			if(returned == mustardCard)
+			if(returned == plumCard)
 				comp1++;
-			else if(returned == libraryCard)
+			else if(returned == pipeCard)
 				comp2++;
-			else if(returned == knifeCard)
+			else if(returned == loungeCard)
 				comp3++;
 			else
 				fail("Invalid card returned");	
@@ -207,7 +220,7 @@ public class GameActionTests {
 		game.setCurrentPlayer(computer1);
 		for(int i = 0; i < 100; i++) {
 			Card returned = game.handleSuggestion(suggestion);
-			if(returned == mustardCard)
+			if(returned == plumCard)
 				fail("Suggesting player cannot return a card");	
 		}
 	}
