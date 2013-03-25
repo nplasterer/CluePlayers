@@ -27,6 +27,10 @@ public class Player {
 		
 		return cards.get(0);	
 	}
+	
+	public void acceptCard(Card card) {
+		cards.add(card);
+	}
 
 	
 	//Setters and getters for tests

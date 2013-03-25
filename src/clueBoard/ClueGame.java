@@ -6,31 +6,70 @@ import java.io.FileReader;
 import java.lang.reflect.Field;
 //Naomi and Brandon
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 import java.util.Scanner;
 
 public class ClueGame {
 	private ArrayList<ComputerPlayer> computer;
 	private Solution answer;
 	private ArrayList<Card> cards;
+	private ArrayList<Card> fullDeck;
 	private HumanPlayer human;
 	private boolean turn;
 	private Player currentPlayer;
 	private String playerFile;
+	private String cardFile;
 
 	public ClueGame() {
 		computer = new ArrayList<ComputerPlayer>();
 		cards = new ArrayList<Card>();
+		fullDeck = new ArrayList<Card>();
 		human = new HumanPlayer();
 		setPlayerFile("Players.txt");
+		setCardFile("Cards.txt");
 	}
 	
 	public void deal(){
-		
+		int dealt = 0;
+		while(!cards.isEmpty()) {
+			int index = dealt % 6;
+			Player dealtTo = null;
+			Card toBeDealt;
+			switch(index) {
+			case 0:
+				dealtTo = human;
+				break;
+			case 1:
+				dealtTo = computer.get(0);
+				break;
+			case 2:
+				dealtTo = computer.get(1);
+				break;
+			case 3:
+				dealtTo = computer.get(2);
+				break;
+			case 4:
+				dealtTo = computer.get(3);
+				break;
+			case 5:
+				dealtTo = computer.get(4);
+				break;
+			}
+			Random roller = new Random();
+			int cardIndex = roller.nextInt(cards.size());
+			toBeDealt = cards.get(cardIndex);
+			dealtTo.acceptCard(toBeDealt);
+			cards.remove(cardIndex);
+			dealt++;
+		}
 	}
 	
 	public void loadConfigFiles(){
 		try {
 			loadPlayerConfigFile(playerFile);
+			loadCardConfigFile(cardFile);
 		} catch (FileNotFoundException e) {
 			System.out.println(e);
 		} catch (BadConfigFormatException e) {
@@ -103,6 +142,7 @@ public class ClueGame {
 			}
 			numRows++;
 		}
+		playerScanner.close();
 	}
 	
     // Be sure to trim the color, we don't want spaces around the name
@@ -119,9 +159,40 @@ public class ClueGame {
 	}
 	
 	public void loadCardConfigFile(String file) throws FileNotFoundException, BadConfigFormatException {
-	
+		FileReader cardReader = new FileReader(file);
+		Scanner cardScanner = new Scanner(cardReader);
+		Card toAdd;
+		final int numColumns = 2;
+		String name;
+		Card.cardType type = null;
+		while(cardScanner.hasNextLine()) {
+			String line = cardScanner.nextLine();
+			String[] parts = line.split(",");
+			if(parts.length != numColumns) {
+				throw new BadConfigFormatException("Error in card file");
+			}
+			else {
+				name = parts[0];
+				if(parts[1].equals("WEAPON")) 
+					type = Card.cardType.WEAPON;
+				else if (parts[1].equals("PERSON"))
+					type = Card.cardType.PERSON;
+				else if (parts[1].equals("ROOM")) 
+					type = Card.cardType.ROOM;
+				else
+					throw new BadConfigFormatException("invalid card type");
+				toAdd = new Card(name, type);
+				this.cards.add(toAdd);
+				this.fullDeck.add(toAdd);
+			}
+		}
 	}
 
+	
+	
+	
+	
+	
 	//Getters and Setters for tests
 	public Solution getAnswer() {
 		return answer;
@@ -133,6 +204,10 @@ public class ClueGame {
 
 	public ArrayList<Card> getCards() {
 		return cards;
+	}
+	
+	public ArrayList<Card> getFullDeck() {
+		return fullDeck;
 	}
 
 	public void setComputer(ArrayList<ComputerPlayer> computer) {
@@ -162,5 +237,13 @@ public class ClueGame {
 
 	public void setPlayerFile(String playerFile) {
 		this.playerFile = playerFile;
+	}
+
+	public String getCardFile() {
+		return cardFile;
+	}
+
+	public void setCardFile(String cardFile) {
+		this.cardFile = cardFile;
 	}
 }

@@ -9,4 +9,8 @@ public class HumanPlayer extends Player{
 	public HumanPlayer() {
 		super();
 	}
+	
+	public void updateSeen(Card seen){
+		this.seen.add(seen);
+	}
 }

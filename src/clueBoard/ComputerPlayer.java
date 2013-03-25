@@ -24,7 +24,7 @@ public class ComputerPlayer extends Player{
 	}
 	
 	public void updateSeen(Card seen){
-		
+		this.seen.add(seen);
 	}
 
 	public char getLastVistedRoom() {

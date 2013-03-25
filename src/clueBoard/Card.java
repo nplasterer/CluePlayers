@@ -6,7 +6,8 @@ public class Card {
 	private cardType type;
 	
 	public Card(String card, cardType type) {
-		// TODO Auto-generated constructor stub
+		this.card = card;
+		this.type = type;
 	}
 
 	public String getCard() {
