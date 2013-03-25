@@ -29,8 +29,8 @@ public class Player {
 		Random rand = new Random();
 		ArrayList<Card> hand = new ArrayList<Card>();
 		hand = cards;
-		for(Card c: hand)
-			System.out.println(c.getCard());
+		//for(Card c: hand)
+			//System.out.println(c.getCard());
 		
 		while (!hand.isEmpty())
 		{
