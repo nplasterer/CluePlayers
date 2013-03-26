@@ -40,13 +40,13 @@ public class ControlPanel {
 		tf1.setEditable(false);
 		
 		tf2.setText("5");
-		tf1.setEditable(false);
+		tf2.setEditable(false);
 		
 		tf3.setText("Guess");
-		tf1.setEditable(false);
+		tf3.setEditable(false);
 		
 		tf4.setText("Response");
-		tf1.setEditable(false);
+		tf4.setEditable(false);
 
 		JPanel topleft = new JPanel();
 		topleft.setLayout(new FlowLayout());
