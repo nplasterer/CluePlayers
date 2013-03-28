@@ -31,7 +31,7 @@ public class ClueGame extends JFrame{
 		human = new HumanPlayer();
 		setPlayerFile("Players.txt");
 		setCardFile("Cards.txt");
-		drawBoard();
+		//drawBoard();
 	}
 	
 	public void deal(){
