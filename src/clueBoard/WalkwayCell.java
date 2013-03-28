@@ -1,5 +1,7 @@
 package clueBoard;
 
+import java.awt.Graphics;
+
 public class WalkwayCell extends BoardCell {
 
 	public WalkwayCell() {
@@ -11,8 +13,8 @@ public class WalkwayCell extends BoardCell {
 		return true;
 	}
 	
-//	@Override
-//	public void draw() {
-//		
-//	}
+	@Override
+	public void draw(Graphics g, Board board) {
+		
+	}
 }

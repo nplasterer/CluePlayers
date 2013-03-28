@@ -1,5 +1,7 @@
 package clueBoard;
 
+import java.awt.Graphics;
+
 public class RoomCell extends BoardCell {
 
 	public enum DoorDirection {RIGHT, LEFT, UP, DOWN, NONE}
@@ -99,8 +101,8 @@ public class RoomCell extends BoardCell {
 	}
 	
 	
-//	@Override
-//	public void draw() {
-//		
-//	}
+	@Override
+	public void draw(Graphics g, Board board) {
+		
+	}
 }

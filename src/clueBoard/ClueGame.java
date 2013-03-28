@@ -11,7 +11,9 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 
-public class ClueGame {
+import javax.swing.JFrame;
+
+public class ClueGame extends JFrame{
 	private ArrayList<ComputerPlayer> computer;
 	private Solution answer;
 	private ArrayList<Card> cards;
@@ -29,6 +31,7 @@ public class ClueGame {
 		human = new HumanPlayer();
 		setPlayerFile("Players.txt");
 		setCardFile("Cards.txt");
+		drawBoard();
 	}
 	
 	public void deal(){
@@ -254,7 +257,13 @@ public class ClueGame {
 		}
 	}
 
-	
+	public void drawBoard(Board board){
+		//Control Panel and Current Cards
+		//board = BoardLayout.Center
+		
+		//Control Panel South
+		//Current Cards East
+	}
 	
 	
 	
